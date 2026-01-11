@@ -1,0 +1,27 @@
+name: ops_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: ops_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  ops_analytics:
+    +materialized: view
+    staging:
+      +schema: stg
+    intermediate:
+      +schema: int
+    marts:
+      +schema: marts
+      +materialized: table
+
